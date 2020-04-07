@@ -2,26 +2,26 @@ import React, { useState, useEffect } from "react";
 import { LoginForm } from "../components/LoginForm";
 
 
-useEffect(() => {
-  if (!user && notion && email && password) {
-    login();
-  }
+// useEffect(() => {
+//   if (!user && notion && email && password) {
+//     login();
+//   }
 
-  async function login() {
-    setIsLoggingIn(true);
-    const auth = await notion
-      .login({ email, password })
-      .catch(error => {
-        setError(error.message);
-      });
+//   async function login() {
+//     setIsLoggingIn(true);
+//     const auth = await notion
+//       .login({ email, password })
+//       .catch(error => {
+//         setError(error.message);
+//       });
 
-    if (auth) {
-      setUser(auth.user);
-    }
+//     if (auth) {
+//       setUser(auth.user);
+//     }
 
-    setIsLoggingIn(false);
-  }
-}, [email, password, notion, user, setUser, setError]);
+//     setIsLoggingIn(false);
+//   }
+// }, [email, password, notion, user, setUser, setError]);
 
 
 

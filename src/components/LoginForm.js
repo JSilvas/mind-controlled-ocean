@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './global.css';
+import '../global.css';
 
 export function LoginForm({ onLogin, loading, error }) {
   const [deviceId, setDeviceId] = useState("");

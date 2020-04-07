@@ -52,8 +52,8 @@ body {
  */
 
 .card {
-  background: #000c14;
-  color: rgb(147, 147, 147);
+  background: #09a3a8;
+  color: rgb(228, 228, 228);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -74,12 +74,12 @@ body {
 }
 
 .card-btn {
-  background: rgb(113, 211, 211);
-  color: #000c14;
+  background: rgb(212, 13, 185);
+  color: #ffffff;
   border: none;
   padding: 8px 20px;
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: inherit;
   margin-top: 16px;
   cursor: pointer;
