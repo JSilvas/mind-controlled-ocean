@@ -1,25 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Router, navigate } from '@reach/router';
+import useLocalStorage from 'react-use/lib/useLocalStorage';
+import { Login } from './pages/Login';
+import { Logout } from './pages/Logout';
 
-function App() {
+import { Notion } from '@neurosity/notion';
+
+export function App() {
+  const [notion, setNotion] = useState(null);
+  const [user, setUser] = useState(null);
+  const [deviceId, setDeviceId] = useLocalStorage("deviceId");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (deviceId) {
+      const notion = new Notion({ deviceId }); // 😲
+      setNotion(notion);
+    } else {
+      setLoading(false);
+    }
+  }, [deviceId]);
+
+
+  useEffect(() => {
+    if (!notion) {
+      return;
+    }
+  
+    const subscription = notion.onAuthStateChanged().subscribe(user => {
+      if (user) {
+        setUser(user);
+      } else {
+        navigate("/");
+      }
+      setLoading(false);
+    });
+  
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [notion]);
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Login
+        path="/"
+        notion={notion}
+        user={user}
+        setUser={setUser}
+        setDeviceId={setDeviceId}
+      />
+      <Logout path="/logout" notion={notion} resetState={() => {
+        setNotion(null);
+        setUser(null);
+        setDeviceId("");
+      }} />
+    </Router>
   );
 }
 
