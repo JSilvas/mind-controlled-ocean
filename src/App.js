@@ -4,6 +4,7 @@ import { Router, navigate } from "@reach/router";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { Login } from "./pages/Login";
 import { Logout } from "./pages/Logout";
+import { Calm } from "./pages/Calm";
 
 import { Notion } from "@neurosity/notion";
 
@@ -42,6 +43,13 @@ export function App() {
     };
   }, [notion]);  
 
+  // If already authenticated, redirect user to the Calm page
+  useEffect(() => {
+    if (user) {
+      navigate("/calm");
+    }
+  }, [user]);
+
   return (
     <Router>
       <Login
@@ -52,10 +60,11 @@ export function App() {
         setDeviceId={setDeviceId}
       />
       <Logout path="/logout" notion={notion} resetState={() => {
-      setNotion(null);
-      setUser(null);
-      setDeviceId("");
-    }} />
+        setNotion(null);
+        setUser(null);
+        setDeviceId("");
+      }} />
+      <Calm path="/calm" notion={notion} user={user} /> 
     </Router>
   );
 }
