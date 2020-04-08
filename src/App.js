@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Router, navigate } from '@reach/router';
-import useLocalStorage from 'react-use/lib/useLocalStorage';
-import { Login } from './pages/Login';
-import { Logout } from './pages/Logout';
+// src/App.js
+import React, { useState, useEffect } from "react";
+import { Router, navigate } from "@reach/router";
+import useLocalStorage from "react-use/lib/useLocalStorage";
+import { Login } from "./pages/Login";
+import { Logout } from "./pages/Logout";
 
-import { Notion } from '@neurosity/notion';
+import { Notion } from "@neurosity/notion";
+
 
 export function App() {
   const [notion, setNotion] = useState(null);
@@ -20,8 +22,7 @@ export function App() {
       setLoading(false);
     }
   }, [deviceId]);
-
-
+  
   useEffect(() => {
     if (!notion) {
       return;
@@ -39,8 +40,7 @@ export function App() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [notion]);
-  
+  }, [notion]);  
 
   return (
     <Router>
@@ -52,12 +52,11 @@ export function App() {
         setDeviceId={setDeviceId}
       />
       <Logout path="/logout" notion={notion} resetState={() => {
-        setNotion(null);
-        setUser(null);
-        setDeviceId("");
-      }} />
+      setNotion(null);
+      setUser(null);
+      setDeviceId("");
+    }} />
     </Router>
   );
 }
 
-export default App;

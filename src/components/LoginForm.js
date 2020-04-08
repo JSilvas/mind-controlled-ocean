@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../global.css';
 
-export function LoginForm({ onLogin, loading, error }) {
+export function LoginForm({ onLogin, loading, error, children }) {
   const [deviceId, setDeviceId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +47,7 @@ export function LoginForm({ onLogin, loading, error }) {
           {loading ? "Logging in..." : "Login"}
         </button>
       </div>
+      {children}
     </form>
   );
 }

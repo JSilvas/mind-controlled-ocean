@@ -1,29 +1,6 @@
+// src/pages/Login.js
 import React, { useState, useEffect } from "react";
 import { LoginForm } from "../components/LoginForm";
-
-
-// useEffect(() => {
-//   if (!user && notion && email && password) {
-//     login();
-//   }
-
-//   async function login() {
-//     setIsLoggingIn(true);
-//     const auth = await notion
-//       .login({ email, password })
-//       .catch(error => {
-//         setError(error.message);
-//       });
-
-//     if (auth) {
-//       setUser(auth.user);
-//     }
-
-//     setIsLoggingIn(false);
-//   }
-// }, [email, password, notion, user, setUser, setError]);
-
-
 
 export function Login({ notion, user, setUser, setDeviceId }) {
   const [email, setEmail] = useState("");
@@ -42,7 +19,6 @@ export function Login({ notion, user, setUser, setDeviceId }) {
     }
   }
 
-  // TODO
   useEffect(() => {
     if (!user && notion && email && password) {
       login();
@@ -62,8 +38,7 @@ export function Login({ notion, user, setUser, setDeviceId }) {
   
       setIsLoggingIn(false);
     }
-  }, [email, password, notion, user, setUser, setError]);
-  // TODO
+  }, [email, password, notion, user, setUser, setError]);  
 
   return (
     <LoginForm

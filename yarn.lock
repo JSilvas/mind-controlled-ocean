@@ -9349,10 +9349,10 @@ react-scripts@3.4.0:
   optionalDependencies:
     fsevents "2.1.2"
 
-react-use@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-14.0.0.tgz#a46d055346bb8728b966f50d665ce22aa535e74c"
-  integrity sha512-ZJJRaRTreBYn2zT5OBpKpiU/muoWioFkZABfIXJf2PsnBYwnn6XYTV7NvVQnmuuvn24B+R/setmEJQsB13okXw==
+react-use@^14.1.0:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-14.1.0.tgz#62a5d2d5b5af29b753acaa690207981f8e434dde"
+  integrity sha512-ps4r2mbwoFxaWaAuKdv8Ow7ygHGtglwshuHCMxRz0SGJqUo/k4Cg1W41WgAEVaXm0XMYyrSch9nOp5x7QylMDQ==
   dependencies:
     "@types/js-cookie" "2.2.5"
     "@xobotyi/scrollbar-width" "1.9.5"
@@ -9455,6 +9455,11 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+rebound@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/rebound/-/rebound-0.1.0.tgz#0638c61a93666bb515a58a03e1cfb34021e88b72"
+  integrity sha1-BjjGGpNma7UVpYoD4c+zQCHoi3I=
 
 recursive-readdir@2.2.2:
   version "2.2.2"
@@ -9804,7 +9809,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.5.1:
+rxjs@^6.5.1, rxjs@^6.5.4:
   version "6.5.5"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
   integrity sha512-WfQI+1gohdf0Dai/Bbmk5L5ItH5tYqm3ki2c5GdWhKjalzjg93N3avFjVStyZZz+A2Em+ZxKH5bNghw9UeylGQ==
