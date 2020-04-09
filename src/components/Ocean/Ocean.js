@@ -51,4 +51,3 @@ export function Ocean({ calm }) {
 
   return <canvas className="simulation" ref={ref}></canvas>;
 }
-
