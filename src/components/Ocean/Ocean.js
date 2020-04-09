@@ -1,22 +1,44 @@
-// src/components/Ocean/Ocean.js
 import React, { useState, useEffect, useRef } from "react";
+import useWindowSize from "react-use/lib/useWindowSize";
 import useRafState from "react-use/lib/useRafState";
+import useSpring from "react-use/lib/useSpring";
 
-import { Simulator, Camera } from "./simulation.js"; // by David Li
+import { Simulator, Camera } from "./simulation.js";
 import { mapCalmToWeather } from "./weather.js";
+// import "./ocean.css";
 
 const camera = new Camera();
 
 export function Ocean({ calm }) {
   const ref = useRef();
+  const { width, height } = useWindowSize();
   const [simulator, setSimulator] = useState();
   const [lastTime, setLastTime] = useRafState(Date.now());
+  const animatedCalm = useSpring(calm, 0, 25);
 
   useEffect(() => {
-    const { innerWidth, innerHeight } = window;
-    const simulator = new Simulator(ref.current, innerWidth, innerHeight);
+    const simulator = new Simulator(ref.current, 0, 0);
     setSimulator(simulator);
   }, [ref, setSimulator]);
+
+  useEffect(() => {
+    if (simulator) {
+      setWeatherBasedOnCalm(animatedCalm);
+    }
+
+    function setWeatherBasedOnCalm(animatedCalm) {
+      const { choppiness, wind, size } = mapCalmToWeather(animatedCalm);
+      simulator.setChoppiness(choppiness);
+      simulator.setWind(wind, wind);
+      simulator.setSize(size);
+    }
+  }, [animatedCalm, simulator]);
+
+  useEffect(() => {
+    if (simulator) {
+      simulator.resize(width, height);
+    }
+  }, [width, height, simulator]);
 
   useEffect(() => {
     if (simulator) {

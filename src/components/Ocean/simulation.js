@@ -1214,4 +1214,3 @@ export function Simulator(canvas, width, height) {
     gl.disableVertexAttribArray(OCEAN_COORDINATES_UNIT);
   };
 }
-

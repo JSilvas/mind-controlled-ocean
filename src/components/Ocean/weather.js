@@ -23,7 +23,6 @@ export function mapCalmToWeather(calm) {
     toRange: sizeRange,
     reverse: false
   });
-  
   return { choppiness, wind, size };
 }
 
@@ -49,4 +48,3 @@ export function reverseRange(value, [min, max]) {
 export function clamp(x, min, max) {
   return Math.min(Math.max(x, min), max);
 }
-

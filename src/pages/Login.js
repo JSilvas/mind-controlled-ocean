@@ -8,17 +8,6 @@ export function Login({ notion, user, setUser, setDeviceId }) {
   const [error, setError] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  function onLogin({ email, password, deviceId }) {
-    if (email && password && deviceId) {
-      setError("");
-      setEmail(email);
-      setPassword(password);
-      setDeviceId(deviceId);
-    } else {
-      setError("Please fill the form");
-    }
-  }
-
   useEffect(() => {
     if (!user && notion && email && password) {
       login();
@@ -39,6 +28,18 @@ export function Login({ notion, user, setUser, setDeviceId }) {
       setIsLoggingIn(false);
     }
   }, [email, password, notion, user, setUser, setError]);  
+  
+  function onLogin({ email, password, deviceId }) {
+    if (email && password && deviceId) {
+      setError("");
+      setEmail(email);
+      setPassword(password);
+      setDeviceId(deviceId);
+    } else {
+      setError("Please fill the form");
+    }
+  }
+  
 
   return (
     <LoginForm
@@ -48,3 +49,4 @@ export function Login({ notion, user, setUser, setDeviceId }) {
     />
   );
 }
+

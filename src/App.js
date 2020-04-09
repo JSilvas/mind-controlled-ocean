@@ -1,19 +1,19 @@
 // src/App.js
 import React, { useState, useEffect } from "react";
 import { Router, navigate } from "@reach/router";
+import { Notion } from "@neurosity/notion";
 import useLocalStorage from "react-use/lib/useLocalStorage";
+
+import { Loading } from "./components/Loading";
 import { Login } from "./pages/Login";
 import { Logout } from "./pages/Logout";
-import { Calm } from "./pages/Calm";
-
-import { Notion } from "@neurosity/notion";
 
 
 export function App() {
   const [notion, setNotion] = useState(null);
   const [user, setUser] = useState(null);
-  const [deviceId, setDeviceId] = useLocalStorage("deviceId");
   const [loading, setLoading] = useState(true);
+  const [deviceId, setDeviceId] = useLocalStorage("deviceId");
 
   useEffect(() => {
     if (deviceId) {
@@ -41,14 +41,17 @@ export function App() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [notion]);  
+  }, [notion]);
 
-  // If already authenticated, redirect user to the Calm page
-  useEffect(() => {
-    if (user) {
-      navigate("/calm");
-    }
-  }, [user]);
+  // function resetState() {
+  //   setNotion(null);
+  //   setUser(null);
+  //   setDeviceId("");
+  // }
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Router>
@@ -64,7 +67,6 @@ export function App() {
         setUser(null);
         setDeviceId("");
       }} />
-      <Calm path="/calm" notion={notion} user={user} /> 
     </Router>
   );
 }
